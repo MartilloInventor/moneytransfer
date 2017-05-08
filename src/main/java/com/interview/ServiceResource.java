@@ -1,12 +1,11 @@
 package com.interview;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
+
 import javax.ws.rs.core.MediaType;
 import java.util.List;
+
+import static jdk.nashorn.internal.runtime.PropertyDescriptor.GET;
 
 /**
  * http://www.dropwizard.io/1.0.6/docs/manual/core.html#resources
@@ -23,7 +22,7 @@ public class ServiceResource {
     }
 
     @GET
-    @Path("ping")
+    @javax.ws.rs.Path("ping")
     public String ping() {
         return "Pong";
     }
