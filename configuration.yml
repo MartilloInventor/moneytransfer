@@ -1,0 +1,110 @@
+server:
+
+  # Jetty Web Server
+  applicationConnectors:
+    - type: http
+      port: 8080
+  adminConnectors:
+    - type: http
+      port: 8081
+  requestLog:
+    appenders: []
+# DB
+database:
+  # the name of your JDBC driver
+  driverClass: "org.postgresql.Driver"
+
+  # the username
+  user: "circle"
+
+  # the password
+  password: "circle"
+
+  # the JDBC URL
+  url: "jdbc:postgresql://localhost:5432/circle"
+
+  # the SQL query to run when validating a connection's liveness
+  validationQuery: "/* APIService Health Check */ SELECT 1"
+
+  # whether or not idle connections should be validated
+  checkConnectionWhileIdle: false
+
+  # the maximum amount of time to wait on an empty pool before throwing an exception
+  maxWaitForConnection: 10s
+
+  # Limits for simultaneous connections to DB
+  minSize: 4
+  initialSize: 4
+  maxSize: 8
+
+  # only for dev/qa to try and track down DB handle leak, staging/prod should not set this
+  logAbandonedConnections: true
+
+flyway:
+  # The encoding of SQL migrations. (default: UTF-8)
+  encoding: UTF-8
+  # The name of the schema metadata table that will be used by Flyway. (default: schema_version)
+  metaDataTableName: schema_version
+  # The file name prefix for sql migrations (default: V)
+  sqlMigrationPrefix: V
+  # The file name separator for sql migrations (default: __)
+  sqlMigrationSeparator: __
+  # The file name suffix for sql migrations (default: .sql)
+  sqlMigrationSuffix: .sql
+  # Locations to scan recursively for migrations. (default: db/migration)
+  locations:
+    - db/migration
+  # Allows migrations to be run "out of order". If you already have versions 1 and 3 applied, and now a version 2 is found, it will be applied too instead of being ignored. (default: false)
+  outOfOrder: false
+  # The description to tag an existing schema with when executing baseline. (default: << Flyway Baseline >>)
+  baselineDescription: "<< Flyway Baseline >>"
+  # Whether to automatically call baseline when migrate is executed against a non-empty schema with no metadata table. (default: false)
+  # Be careful when enabling this as it removes the safety net that ensures Flyway does not migrate the wrong database in case of a configuration mistake!
+  baselineOnMigrate: false
+  # Whether to automatically call validate or not when running migrate. (default: true)
+  validateOnMigrate: true
+
+
+
+# Logging settings.
+logging:
+
+  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
+  level: INFO
+
+  appenders:
+    - type: console
+
+      # Do not display log statements below this threshold to stdout.
+      threshold: ALL
+
+      # Write to stdout or stderr
+      target: stdout
+
+      # A custom Logback format string.
+      logFormat: "level=\"%p\" timestamp=\"%d{ISO8601,UTC}Z\" category=\"%c\" %replace(%m){'\"password\":\"(.*)\"', '\"password\":\"\"'}%n%xEx"
+
+      # The timezone used to format dates (use UTC)
+      timeZone: UTC
+
+    - type: file
+
+      # Do not write log statements below this threshold to the file.
+      threshold: ALL
+
+      # The file to which current statements will be logged.
+      currentLogFilename: ./logs/log.log
+
+      # When the log file rotates, the archived log will be renamed to this and gzipped. The
+      # %d is replaced with the previous day (yyyy-MM-dd). Custom rolling windows can be created
+      # by passing a SimpleDateFormat-compatible format as an argument: "%d{yyyy-MM-dd-hh}".
+      archivedLogFilenamePattern: ./logs/log-%d.log.gz
+
+      # The number of archived files to keep.
+      archivedFileCount: 10
+
+      # The timezone used to format dates (use UTC)
+      timeZone: UTC
+
+      # A custom Logback format string.
+      logFormat: "level=\"%p\" timestamp=\"%d{ISO8601,UTC}Z\" category=\"%c\" %replace(%m){'\"password\":\"(.*)\"', '\"password\":\"\"'}%n%xEx"

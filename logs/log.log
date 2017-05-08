@@ -1,0 +1,596 @@
+level="INFO" timestamp="2017-03-30 18:06:33,424Z" category="org.eclipse.jetty.util.log" Logging initialized @1928ms
+level="INFO" timestamp="2017-03-30 18:06:33,518Z" category="io.dropwizard.server.DefaultServerFactory" Registering jersey handler with root path prefix: /
+level="INFO" timestamp="2017-03-30 18:06:33,518Z" category="io.dropwizard.server.DefaultServerFactory" Registering admin handler with root path prefix: /
+level="INFO" timestamp="2017-03-30 18:06:33,550Z" category="org.flywaydb.core.internal.util.VersionPrinter" Flyway 4.0.3 by Boxfuse
+level="ERROR" timestamp="2017-03-30 18:06:33,647Z" category="org.apache.tomcat.jdbc.pool.ConnectionPool" Unable to create initial connections of pool.
+! org.postgresql.util.PSQLException: Connection to localhost:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+! at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:262)
+! at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:52)
+! at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:216)
+! at org.postgresql.Driver.makeConnection(Driver.java:404)
+! at org.postgresql.Driver.connect(Driver.java:272)
+! at org.apache.tomcat.jdbc.pool.PooledConnection.connectUsingDriver(PooledConnection.java:310)
+! at org.apache.tomcat.jdbc.pool.PooledConnection.connect(PooledConnection.java:203)
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.createConnection(ConnectionPool.java:717)
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.borrowConnection(ConnectionPool.java:649)
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.init(ConnectionPool.java:468)
+! at org.apache.tomcat.jdbc.pool.ConnectionPool.<init>(ConnectionPool.java:143)
+! at org.apache.tomcat.jdbc.pool.DataSourceProxy.pCreatePool(DataSourceProxy.java:118)
+! at org.apache.tomcat.jdbc.pool.DataSourceProxy.createPool(DataSourceProxy.java:107)
+! at org.apache.tomcat.jdbc.pool.DataSourceProxy.getConnection(DataSourceProxy.java:131)
+! at org.flywaydb.core.internal.util.jdbc.JdbcUtils.openConnection(JdbcUtils.java:50)
+! at org.flywaydb.core.Flyway.execute(Flyway.java:1326)
+! at org.flywaydb.core.Flyway.clean(Flyway.java:1021)
+! at com.interview.ServiceApplication.run(ServiceApplication.java:40)
+! at com.interview.ServiceApplication.run(ServiceApplication.java:15)
+! at io.dropwizard.cli.EnvironmentCommand.run(EnvironmentCommand.java:43)
+! at io.dropwizard.cli.ConfiguredCommand.run(ConfiguredCommand.java:85)
+! at io.dropwizard.cli.Cli.run(Cli.java:75)
+! at io.dropwizard.Application.run(Application.java:79)
+! at com.interview.ServiceApplication.main(ServiceApplication.java:17)
+! Caused by: java.net.ConnectException: Connection refused
+! at java.net.PlainSocketImpl.socketConnect(Native Method)
+! at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:345)
+! at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+! at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+! at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+! at java.net.Socket.connect(Socket.java:589)
+! at org.postgresql.core.PGStream.<init>(PGStream.java:61)
+! at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:144)
+! ... 23 common frames omitted
+level="INFO" timestamp="2017-03-30 18:09:14,661Z" category="org.eclipse.jetty.util.log" Logging initialized @1613ms
+level="INFO" timestamp="2017-03-30 18:09:14,761Z" category="io.dropwizard.server.DefaultServerFactory" Registering jersey handler with root path prefix: /
+level="INFO" timestamp="2017-03-30 18:09:14,761Z" category="io.dropwizard.server.DefaultServerFactory" Registering admin handler with root path prefix: /
+level="INFO" timestamp="2017-03-30 18:09:14,789Z" category="org.flywaydb.core.internal.util.VersionPrinter" Flyway 4.0.3 by Boxfuse
+level="INFO" timestamp="2017-03-30 18:09:14,975Z" category="org.flywaydb.core.internal.dbsupport.DbSupportFactory" Database: jdbc:postgresql://localhost:5432/circle (PostgreSQL 9.6)
+level="INFO" timestamp="2017-03-30 18:09:15,023Z" category="org.flywaydb.core.internal.command.DbClean" Successfully cleaned schema "public" (execution time 00:00.014s)
+level="INFO" timestamp="2017-03-30 18:09:15,069Z" category="org.flywaydb.core.internal.dbsupport.DbSupportFactory" Database: jdbc:postgresql://localhost:5432/circle (PostgreSQL 9.6)
+level="INFO" timestamp="2017-03-30 18:09:15,087Z" category="org.flywaydb.core.internal.command.DbValidate" Successfully validated 1 migration (execution time 00:00.010s)
+level="INFO" timestamp="2017-03-30 18:09:15,105Z" category="org.flywaydb.core.internal.metadatatable.MetaDataTableImpl" Creating Metadata table: "public"."schema_version"
+level="INFO" timestamp="2017-03-30 18:09:15,200Z" category="org.flywaydb.core.internal.command.DbMigrate" Current version of schema "public": << Empty Schema >>
+level="INFO" timestamp="2017-03-30 18:09:15,200Z" category="org.flywaydb.core.internal.command.DbMigrate" Migrating schema "public" to version 1 - Accounts
+level="INFO" timestamp="2017-03-30 18:09:15,290Z" category="org.flywaydb.core.internal.command.DbMigrate" Successfully applied 1 migration to schema "public" (execution time 00:00.186s).
+level="INFO" timestamp="2017-03-30 18:09:15,357Z" category="io.dropwizard.server.DefaultServerFactory" Registering jersey handler with root path prefix: /
+level="INFO" timestamp="2017-03-30 18:09:15,357Z" category="io.dropwizard.server.DefaultServerFactory" Registering admin handler with root path prefix: /
+level="INFO" timestamp="2017-03-30 18:09:15,359Z" category="io.dropwizard.server.ServerFactory" Starting ServiceApplication
+level="INFO" timestamp="2017-03-30 18:09:15,458Z" category="org.eclipse.jetty.setuid.SetUIDListener" Opened application@32177fa5{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
+level="INFO" timestamp="2017-03-30 18:09:15,458Z" category="org.eclipse.jetty.setuid.SetUIDListener" Opened admin@a96d56c{HTTP/1.1,[http/1.1]}{0.0.0.0:8081}
+level="INFO" timestamp="2017-03-30 18:09:15,461Z" category="org.eclipse.jetty.server.Server" jetty-9.3.9.v20160517
+level="INFO" timestamp="2017-03-30 18:09:16,113Z" category="io.dropwizard.jersey.DropwizardResourceConfig" The following paths were found for the configured resources:
+
+    GET     /api/accounts (com.interview.ServiceResource)
+    GET     /api/accounts/{id} (com.interview.ServiceResource)
+    GET     /api/ping (com.interview.ServiceResource)
+
+level="INFO" timestamp="2017-03-30 18:09:16,116Z" category="org.eclipse.jetty.server.handler.ContextHandler" Started i.d.j.MutableServletContextHandler@724bf25f{/,null,AVAILABLE}
+level="INFO" timestamp="2017-03-30 18:09:16,127Z" category="io.dropwizard.setup.AdminEnvironment" tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+level="INFO" timestamp="2017-03-30 18:09:16,133Z" category="org.eclipse.jetty.server.handler.ContextHandler" Started i.d.j.MutableServletContextHandler@5234b61a{/,null,AVAILABLE}
+level="INFO" timestamp="2017-03-30 18:09:16,144Z" category="org.eclipse.jetty.server.AbstractConnector" Started application@32177fa5{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
+level="INFO" timestamp="2017-03-30 18:09:16,144Z" category="org.eclipse.jetty.server.AbstractConnector" Started admin@a96d56c{HTTP/1.1,[http/1.1]}{0.0.0.0:8081}
+level="INFO" timestamp="2017-03-30 18:09:16,145Z" category="org.eclipse.jetty.server.Server" Started @3098ms
+level="ERROR" timestamp="2017-03-30 18:10:30,847Z" category="io.dropwizard.jersey.errors.LoggingExceptionMapper" Error handling a request: 9d6b94250081a401
+! org.skife.jdbi.v2.MappingRegistry$1: No mapper registered for com.interview.Account
+! at org.skife.jdbi.v2.MappingRegistry.mapperFor(MappingRegistry.java:83)
+! at org.skife.jdbi.v2.RegisteredMapper.map(RegisteredMapper.java:35)
+! at org.skife.jdbi.v2.Query$4.munge(Query.java:183)
+! at org.skife.jdbi.v2.QueryResultSetMunger.munge(QueryResultSetMunger.java:41)
+! at org.skife.jdbi.v2.SQLStatement.internalExecute(SQLStatement.java:1344)
+! at org.skife.jdbi.v2.Query.fold(Query.java:173)
+! at org.skife.jdbi.v2.Query.first(Query.java:273)
+! at org.skife.jdbi.v2.Query.first(Query.java:264)
+! at com.interview.ServiceDAO.getAccount(ServiceDAO.java:33)
+! at com.interview.ServiceResource.getAllAccounts(ServiceResource.java:41)
+! at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+! at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+! at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+! at java.lang.reflect.Method.invoke(Method.java:497)
+! at org.glassfish.jersey.server.model.internal.ResourceMethodInvocationHandlerFactory$1.invoke(ResourceMethodInvocationHandlerFactory.java:81)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher$1.run(AbstractJavaResourceMethodDispatcher.java:144)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.invoke(AbstractJavaResourceMethodDispatcher.java:161)
+! at org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$TypeOutInvoker.doDispatch(JavaResourceMethodDispatcherProvider.java:205)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.dispatch(AbstractJavaResourceMethodDispatcher.java:99)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:389)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:347)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:102)
+! at org.glassfish.jersey.server.ServerRuntime$2.run(ServerRuntime.java:326)
+! at org.glassfish.jersey.internal.Errors$1.call(Errors.java:271)
+! at org.glassfish.jersey.internal.Errors$1.call(Errors.java:267)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:315)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:297)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:267)
+! at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:317)
+! at org.glassfish.jersey.server.ServerRuntime.process(ServerRuntime.java:305)
+! at org.glassfish.jersey.server.ApplicationHandler.handle(ApplicationHandler.java:1154)
+! at org.glassfish.jersey.servlet.WebComponent.serviceImpl(WebComponent.java:473)
+! at org.glassfish.jersey.servlet.WebComponent.service(WebComponent.java:427)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:388)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:341)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:228)
+! at io.dropwizard.jetty.NonblockingServletHolder.handle(NonblockingServletHolder.java:49)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1689)
+! at io.dropwizard.servlets.ThreadNameFilter.doFilter(ThreadNameFilter.java:34)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1676)
+! at io.dropwizard.jersey.filter.AllowedMethodsFilter.handle(AllowedMethodsFilter.java:50)
+! at io.dropwizard.jersey.filter.AllowedMethodsFilter.doFilter(AllowedMethodsFilter.java:44)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1676)
+! at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:581)
+! at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1174)
+! at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:511)
+! at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1106)
+! at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:134)
+! at com.codahale.metrics.jetty9.InstrumentedHandler.handle(InstrumentedHandler.java:240)
+! at io.dropwizard.jetty.RoutingHandler.handle(RoutingHandler.java:51)
+! at org.eclipse.jetty.server.handler.gzip.GzipHandler.handle(GzipHandler.java:459)
+! at io.dropwizard.jetty.BiDiGzipHandler.handle(BiDiGzipHandler.java:68)
+! at org.eclipse.jetty.server.handler.StatisticsHandler.handle(StatisticsHandler.java:169)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:134)
+! at org.eclipse.jetty.server.Server.handle(Server.java:524)
+! at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:319)
+! at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:253)
+! at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:273)
+! at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:95)
+! at org.eclipse.jetty.io.SelectChannelEndPoint$2.run(SelectChannelEndPoint.java:93)
+! at org.eclipse.jetty.util.thread.strategy.ExecuteProduceConsume.executeProduceConsume(ExecuteProduceConsume.java:303)
+! at org.eclipse.jetty.util.thread.strategy.ExecuteProduceConsume.produceConsume(ExecuteProduceConsume.java:148)
+! at org.eclipse.jetty.util.thread.strategy.ExecuteProduceConsume.run(ExecuteProduceConsume.java:136)
+! at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:671)
+! at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:589)
+! at java.lang.Thread.run(Thread.java:745)
+level="ERROR" timestamp="2017-03-30 18:10:34,492Z" category="io.dropwizard.jersey.errors.LoggingExceptionMapper" Error handling a request: d2e250f40b59c1b6
+! org.skife.jdbi.v2.MappingRegistry$1: No mapper registered for com.interview.Account
+! at org.skife.jdbi.v2.MappingRegistry.mapperFor(MappingRegistry.java:83)
+! at org.skife.jdbi.v2.RegisteredMapper.map(RegisteredMapper.java:35)
+! at org.skife.jdbi.v2.Query$4.munge(Query.java:183)
+! at org.skife.jdbi.v2.QueryResultSetMunger.munge(QueryResultSetMunger.java:41)
+! at org.skife.jdbi.v2.SQLStatement.internalExecute(SQLStatement.java:1344)
+! at org.skife.jdbi.v2.Query.fold(Query.java:173)
+! at org.skife.jdbi.v2.Query.first(Query.java:273)
+! at org.skife.jdbi.v2.Query.first(Query.java:264)
+! at com.interview.ServiceDAO.getAccount(ServiceDAO.java:33)
+! at com.interview.ServiceResource.getAllAccounts(ServiceResource.java:41)
+! at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+! at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+! at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+! at java.lang.reflect.Method.invoke(Method.java:497)
+! at org.glassfish.jersey.server.model.internal.ResourceMethodInvocationHandlerFactory$1.invoke(ResourceMethodInvocationHandlerFactory.java:81)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher$1.run(AbstractJavaResourceMethodDispatcher.java:144)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.invoke(AbstractJavaResourceMethodDispatcher.java:161)
+! at org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$TypeOutInvoker.doDispatch(JavaResourceMethodDispatcherProvider.java:205)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.dispatch(AbstractJavaResourceMethodDispatcher.java:99)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:389)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:347)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:102)
+! at org.glassfish.jersey.server.ServerRuntime$2.run(ServerRuntime.java:326)
+! at org.glassfish.jersey.internal.Errors$1.call(Errors.java:271)
+! at org.glassfish.jersey.internal.Errors$1.call(Errors.java:267)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:315)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:297)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:267)
+! at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:317)
+! at org.glassfish.jersey.server.ServerRuntime.process(ServerRuntime.java:305)
+! at org.glassfish.jersey.server.ApplicationHandler.handle(ApplicationHandler.java:1154)
+! at org.glassfish.jersey.servlet.WebComponent.serviceImpl(WebComponent.java:473)
+! at org.glassfish.jersey.servlet.WebComponent.service(WebComponent.java:427)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:388)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:341)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:228)
+! at io.dropwizard.jetty.NonblockingServletHolder.handle(NonblockingServletHolder.java:49)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1689)
+! at io.dropwizard.servlets.ThreadNameFilter.doFilter(ThreadNameFilter.java:34)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1676)
+! at io.dropwizard.jersey.filter.AllowedMethodsFilter.handle(AllowedMethodsFilter.java:50)
+! at io.dropwizard.jersey.filter.AllowedMethodsFilter.doFilter(AllowedMethodsFilter.java:44)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1676)
+! at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:581)
+! at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1174)
+! at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:511)
+! at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1106)
+! at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:134)
+! at com.codahale.metrics.jetty9.InstrumentedHandler.handle(InstrumentedHandler.java:240)
+! at io.dropwizard.jetty.RoutingHandler.handle(RoutingHandler.java:51)
+! at org.eclipse.jetty.server.handler.gzip.GzipHandler.handle(GzipHandler.java:459)
+! at io.dropwizard.jetty.BiDiGzipHandler.handle(BiDiGzipHandler.java:68)
+! at org.eclipse.jetty.server.handler.StatisticsHandler.handle(StatisticsHandler.java:169)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:134)
+! at org.eclipse.jetty.server.Server.handle(Server.java:524)
+! at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:319)
+! at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:253)
+! at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:273)
+! at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:95)
+! at org.eclipse.jetty.io.SelectChannelEndPoint$2.run(SelectChannelEndPoint.java:93)
+! at org.eclipse.jetty.util.thread.strategy.ExecuteProduceConsume.executeProduceConsume(ExecuteProduceConsume.java:303)
+! at org.eclipse.jetty.util.thread.strategy.ExecuteProduceConsume.produceConsume(ExecuteProduceConsume.java:148)
+! at org.eclipse.jetty.util.thread.strategy.ExecuteProduceConsume.run(ExecuteProduceConsume.java:136)
+! at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:671)
+! at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:589)
+! at java.lang.Thread.run(Thread.java:745)
+level="INFO" timestamp="2017-03-30 18:12:12,479Z" category="org.eclipse.jetty.server.AbstractConnector" Stopped application@32177fa5{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
+level="INFO" timestamp="2017-03-30 18:12:12,481Z" category="org.eclipse.jetty.server.AbstractConnector" Stopped admin@a96d56c{HTTP/1.1,[http/1.1]}{0.0.0.0:8081}
+level="INFO" timestamp="2017-03-30 18:12:12,482Z" category="org.eclipse.jetty.server.handler.ContextHandler" Stopped i.d.j.MutableServletContextHandler@5234b61a{/,null,UNAVAILABLE}
+level="INFO" timestamp="2017-03-30 18:12:12,485Z" category="org.eclipse.jetty.server.handler.ContextHandler" Stopped i.d.j.MutableServletContextHandler@724bf25f{/,null,UNAVAILABLE}
+level="INFO" timestamp="2017-03-30 18:12:15,138Z" category="org.eclipse.jetty.util.log" Logging initialized @1333ms
+level="INFO" timestamp="2017-03-30 18:12:15,211Z" category="io.dropwizard.server.DefaultServerFactory" Registering jersey handler with root path prefix: /
+level="INFO" timestamp="2017-03-30 18:12:15,211Z" category="io.dropwizard.server.DefaultServerFactory" Registering admin handler with root path prefix: /
+level="INFO" timestamp="2017-03-30 18:12:15,234Z" category="org.flywaydb.core.internal.util.VersionPrinter" Flyway 4.0.3 by Boxfuse
+level="INFO" timestamp="2017-03-30 18:12:15,403Z" category="org.flywaydb.core.internal.dbsupport.DbSupportFactory" Database: jdbc:postgresql://localhost:5432/circle (PostgreSQL 9.6)
+level="INFO" timestamp="2017-03-30 18:12:15,466Z" category="org.flywaydb.core.internal.command.DbClean" Successfully cleaned schema "public" (execution time 00:00.031s)
+level="INFO" timestamp="2017-03-30 18:12:15,504Z" category="org.flywaydb.core.internal.dbsupport.DbSupportFactory" Database: jdbc:postgresql://localhost:5432/circle (PostgreSQL 9.6)
+level="INFO" timestamp="2017-03-30 18:12:15,523Z" category="org.flywaydb.core.internal.command.DbValidate" Successfully validated 1 migration (execution time 00:00.011s)
+level="INFO" timestamp="2017-03-30 18:12:15,538Z" category="org.flywaydb.core.internal.metadatatable.MetaDataTableImpl" Creating Metadata table: "public"."schema_version"
+level="INFO" timestamp="2017-03-30 18:12:15,624Z" category="org.flywaydb.core.internal.command.DbMigrate" Current version of schema "public": << Empty Schema >>
+level="INFO" timestamp="2017-03-30 18:12:15,624Z" category="org.flywaydb.core.internal.command.DbMigrate" Migrating schema "public" to version 1 - Accounts
+level="INFO" timestamp="2017-03-30 18:12:15,719Z" category="org.flywaydb.core.internal.command.DbMigrate" Successfully applied 1 migration to schema "public" (execution time 00:00.182s).
+level="INFO" timestamp="2017-03-30 18:12:15,773Z" category="io.dropwizard.server.DefaultServerFactory" Registering jersey handler with root path prefix: /
+level="INFO" timestamp="2017-03-30 18:12:15,773Z" category="io.dropwizard.server.DefaultServerFactory" Registering admin handler with root path prefix: /
+level="INFO" timestamp="2017-03-30 18:12:15,774Z" category="io.dropwizard.server.ServerFactory" Starting ServiceApplication
+level="INFO" timestamp="2017-03-30 18:12:15,852Z" category="org.eclipse.jetty.setuid.SetUIDListener" Opened application@32177fa5{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
+level="INFO" timestamp="2017-03-30 18:12:15,853Z" category="org.eclipse.jetty.setuid.SetUIDListener" Opened admin@a96d56c{HTTP/1.1,[http/1.1]}{0.0.0.0:8081}
+level="INFO" timestamp="2017-03-30 18:12:15,854Z" category="org.eclipse.jetty.server.Server" jetty-9.3.9.v20160517
+level="INFO" timestamp="2017-03-30 18:12:16,367Z" category="io.dropwizard.jersey.DropwizardResourceConfig" The following paths were found for the configured resources:
+
+    GET     /api/accounts (com.interview.ServiceResource)
+    GET     /api/accounts/{id} (com.interview.ServiceResource)
+    GET     /api/ping (com.interview.ServiceResource)
+
+level="INFO" timestamp="2017-03-30 18:12:16,368Z" category="org.eclipse.jetty.server.handler.ContextHandler" Started i.d.j.MutableServletContextHandler@2e56b4d{/,null,AVAILABLE}
+level="INFO" timestamp="2017-03-30 18:12:16,372Z" category="io.dropwizard.setup.AdminEnvironment" tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+level="INFO" timestamp="2017-03-30 18:12:16,377Z" category="org.eclipse.jetty.server.handler.ContextHandler" Started i.d.j.MutableServletContextHandler@296edc75{/,null,AVAILABLE}
+level="INFO" timestamp="2017-03-30 18:12:16,383Z" category="org.eclipse.jetty.server.AbstractConnector" Started application@32177fa5{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
+level="INFO" timestamp="2017-03-30 18:12:16,383Z" category="org.eclipse.jetty.server.AbstractConnector" Started admin@a96d56c{HTTP/1.1,[http/1.1]}{0.0.0.0:8081}
+level="INFO" timestamp="2017-03-30 18:12:16,383Z" category="org.eclipse.jetty.server.Server" Started @2579ms
+level="ERROR" timestamp="2017-03-30 18:12:24,083Z" category="io.dropwizard.jersey.errors.LoggingExceptionMapper" Error handling a request: c3588b76905f0d36
+! java.lang.IllegalArgumentException: A bean, com.interview.Account, was mapped which was not instantiable
+! at org.skife.jdbi.v2.BeanMapper.map(BeanMapper.java:64)
+! at org.skife.jdbi.v2.Query$4.munge(Query.java:183)
+! at org.skife.jdbi.v2.QueryResultSetMunger.munge(QueryResultSetMunger.java:41)
+! at org.skife.jdbi.v2.SQLStatement.internalExecute(SQLStatement.java:1344)
+! at org.skife.jdbi.v2.Query.fold(Query.java:173)
+! at org.skife.jdbi.v2.Query.first(Query.java:273)
+! at org.skife.jdbi.v2.Query.first(Query.java:264)
+! at com.interview.ServiceDAO.getAccount(ServiceDAO.java:33)
+! at com.interview.ServiceResource.getAllAccounts(ServiceResource.java:41)
+! at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+! at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+! at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+! at java.lang.reflect.Method.invoke(Method.java:497)
+! at org.glassfish.jersey.server.model.internal.ResourceMethodInvocationHandlerFactory$1.invoke(ResourceMethodInvocationHandlerFactory.java:81)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher$1.run(AbstractJavaResourceMethodDispatcher.java:144)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.invoke(AbstractJavaResourceMethodDispatcher.java:161)
+! at org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$TypeOutInvoker.doDispatch(JavaResourceMethodDispatcherProvider.java:205)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.dispatch(AbstractJavaResourceMethodDispatcher.java:99)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:389)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:347)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:102)
+! at org.glassfish.jersey.server.ServerRuntime$2.run(ServerRuntime.java:326)
+! at org.glassfish.jersey.internal.Errors$1.call(Errors.java:271)
+! at org.glassfish.jersey.internal.Errors$1.call(Errors.java:267)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:315)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:297)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:267)
+! at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:317)
+! at org.glassfish.jersey.server.ServerRuntime.process(ServerRuntime.java:305)
+! at org.glassfish.jersey.server.ApplicationHandler.handle(ApplicationHandler.java:1154)
+! at org.glassfish.jersey.servlet.WebComponent.serviceImpl(WebComponent.java:473)
+! at org.glassfish.jersey.servlet.WebComponent.service(WebComponent.java:427)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:388)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:341)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:228)
+! at io.dropwizard.jetty.NonblockingServletHolder.handle(NonblockingServletHolder.java:49)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1689)
+! at io.dropwizard.servlets.ThreadNameFilter.doFilter(ThreadNameFilter.java:34)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1676)
+! at io.dropwizard.jersey.filter.AllowedMethodsFilter.handle(AllowedMethodsFilter.java:50)
+! at io.dropwizard.jersey.filter.AllowedMethodsFilter.doFilter(AllowedMethodsFilter.java:44)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1676)
+! at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:581)
+! at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1174)
+! at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:511)
+! at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1106)
+! at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:134)
+! at com.codahale.metrics.jetty9.InstrumentedHandler.handle(InstrumentedHandler.java:240)
+! at io.dropwizard.jetty.RoutingHandler.handle(RoutingHandler.java:51)
+! at org.eclipse.jetty.server.handler.gzip.GzipHandler.handle(GzipHandler.java:459)
+! at io.dropwizard.jetty.BiDiGzipHandler.handle(BiDiGzipHandler.java:68)
+! at org.eclipse.jetty.server.handler.StatisticsHandler.handle(StatisticsHandler.java:169)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:134)
+! at org.eclipse.jetty.server.Server.handle(Server.java:524)
+! at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:319)
+! at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:253)
+! at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:273)
+! at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:95)
+! at org.eclipse.jetty.io.SelectChannelEndPoint$2.run(SelectChannelEndPoint.java:93)
+! at org.eclipse.jetty.util.thread.strategy.ExecuteProduceConsume.executeProduceConsume(ExecuteProduceConsume.java:303)
+! at org.eclipse.jetty.util.thread.strategy.ExecuteProduceConsume.produceConsume(ExecuteProduceConsume.java:148)
+! at org.eclipse.jetty.util.thread.strategy.ExecuteProduceConsume.run(ExecuteProduceConsume.java:136)
+! at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:671)
+! at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:589)
+! at java.lang.Thread.run(Thread.java:745)
+! Caused by: java.lang.InstantiationException: com.interview.Account
+! at java.lang.Class.newInstance(Class.java:427)
+! at org.skife.jdbi.v2.BeanMapper.map(BeanMapper.java:61)
+! ... 65 common frames omitted
+! Caused by: java.lang.NoSuchMethodException: com.interview.Account.<init>()
+! at java.lang.Class.getConstructor0(Class.java:3082)
+! at java.lang.Class.newInstance(Class.java:412)
+! ... 66 common frames omitted
+level="INFO" timestamp="2017-03-30 18:14:06,978Z" category="org.eclipse.jetty.server.AbstractConnector" Stopped application@32177fa5{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
+level="INFO" timestamp="2017-03-30 18:14:06,979Z" category="org.eclipse.jetty.server.AbstractConnector" Stopped admin@a96d56c{HTTP/1.1,[http/1.1]}{0.0.0.0:8081}
+level="INFO" timestamp="2017-03-30 18:14:06,980Z" category="org.eclipse.jetty.server.handler.ContextHandler" Stopped i.d.j.MutableServletContextHandler@296edc75{/,null,UNAVAILABLE}
+level="INFO" timestamp="2017-03-30 18:14:06,983Z" category="org.eclipse.jetty.server.handler.ContextHandler" Stopped i.d.j.MutableServletContextHandler@2e56b4d{/,null,UNAVAILABLE}
+level="INFO" timestamp="2017-03-30 18:15:03,051Z" category="org.eclipse.jetty.util.log" Logging initialized @1483ms
+level="INFO" timestamp="2017-03-30 18:15:03,145Z" category="io.dropwizard.server.DefaultServerFactory" Registering jersey handler with root path prefix: /
+level="INFO" timestamp="2017-03-30 18:15:03,145Z" category="io.dropwizard.server.DefaultServerFactory" Registering admin handler with root path prefix: /
+level="INFO" timestamp="2017-03-30 18:15:03,172Z" category="org.flywaydb.core.internal.util.VersionPrinter" Flyway 4.0.3 by Boxfuse
+level="INFO" timestamp="2017-03-30 18:15:03,349Z" category="org.flywaydb.core.internal.dbsupport.DbSupportFactory" Database: jdbc:postgresql://localhost:5432/circle (PostgreSQL 9.6)
+level="INFO" timestamp="2017-03-30 18:15:03,416Z" category="org.flywaydb.core.internal.command.DbClean" Successfully cleaned schema "public" (execution time 00:00.032s)
+level="INFO" timestamp="2017-03-30 18:15:03,454Z" category="org.flywaydb.core.internal.dbsupport.DbSupportFactory" Database: jdbc:postgresql://localhost:5432/circle (PostgreSQL 9.6)
+level="INFO" timestamp="2017-03-30 18:15:03,470Z" category="org.flywaydb.core.internal.command.DbValidate" Successfully validated 1 migration (execution time 00:00.009s)
+level="INFO" timestamp="2017-03-30 18:15:03,486Z" category="org.flywaydb.core.internal.metadatatable.MetaDataTableImpl" Creating Metadata table: "public"."schema_version"
+level="INFO" timestamp="2017-03-30 18:15:03,573Z" category="org.flywaydb.core.internal.command.DbMigrate" Current version of schema "public": << Empty Schema >>
+level="INFO" timestamp="2017-03-30 18:15:03,573Z" category="org.flywaydb.core.internal.command.DbMigrate" Migrating schema "public" to version 1 - Accounts
+level="INFO" timestamp="2017-03-30 18:15:03,671Z" category="org.flywaydb.core.internal.command.DbMigrate" Successfully applied 1 migration to schema "public" (execution time 00:00.185s).
+level="INFO" timestamp="2017-03-30 18:15:03,748Z" category="io.dropwizard.server.DefaultServerFactory" Registering jersey handler with root path prefix: /
+level="INFO" timestamp="2017-03-30 18:15:03,748Z" category="io.dropwizard.server.DefaultServerFactory" Registering admin handler with root path prefix: /
+level="INFO" timestamp="2017-03-30 18:15:03,750Z" category="io.dropwizard.server.ServerFactory" Starting ServiceApplication
+level="INFO" timestamp="2017-03-30 18:15:03,844Z" category="org.eclipse.jetty.setuid.SetUIDListener" Opened application@43f9dd56{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
+level="INFO" timestamp="2017-03-30 18:15:03,844Z" category="org.eclipse.jetty.setuid.SetUIDListener" Opened admin@1d12e953{HTTP/1.1,[http/1.1]}{0.0.0.0:8081}
+level="INFO" timestamp="2017-03-30 18:15:03,846Z" category="org.eclipse.jetty.server.Server" jetty-9.3.9.v20160517
+level="INFO" timestamp="2017-03-30 18:15:04,418Z" category="io.dropwizard.jersey.DropwizardResourceConfig" The following paths were found for the configured resources:
+
+    GET     /api/accounts (com.interview.ServiceResource)
+    GET     /api/accounts/{id} (com.interview.ServiceResource)
+    GET     /api/ping (com.interview.ServiceResource)
+
+level="INFO" timestamp="2017-03-30 18:15:04,419Z" category="org.eclipse.jetty.server.handler.ContextHandler" Started i.d.j.MutableServletContextHandler@224c7de4{/,null,AVAILABLE}
+level="INFO" timestamp="2017-03-30 18:15:04,425Z" category="io.dropwizard.setup.AdminEnvironment" tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+level="INFO" timestamp="2017-03-30 18:15:04,430Z" category="org.eclipse.jetty.server.handler.ContextHandler" Started i.d.j.MutableServletContextHandler@32507479{/,null,AVAILABLE}
+level="INFO" timestamp="2017-03-30 18:15:04,439Z" category="org.eclipse.jetty.server.AbstractConnector" Started application@43f9dd56{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
+level="INFO" timestamp="2017-03-30 18:15:04,439Z" category="org.eclipse.jetty.server.AbstractConnector" Started admin@1d12e953{HTTP/1.1,[http/1.1]}{0.0.0.0:8081}
+level="INFO" timestamp="2017-03-30 18:15:04,439Z" category="org.eclipse.jetty.server.Server" Started @2872ms
+level="ERROR" timestamp="2017-03-30 18:15:28,473Z" category="io.dropwizard.jersey.errors.LoggingExceptionMapper" Error handling a request: 363d70e88c2725d9
+! java.lang.IllegalArgumentException: A bean, com.interview.Account, was mapped which was not instantiable
+! at org.skife.jdbi.v2.BeanMapper.map(BeanMapper.java:64)
+! at org.skife.jdbi.v2.Query$4.munge(Query.java:183)
+! at org.skife.jdbi.v2.QueryResultSetMunger.munge(QueryResultSetMunger.java:41)
+! at org.skife.jdbi.v2.SQLStatement.internalExecute(SQLStatement.java:1344)
+! at org.skife.jdbi.v2.Query.fold(Query.java:173)
+! at org.skife.jdbi.v2.Query.first(Query.java:273)
+! at org.skife.jdbi.v2.Query.first(Query.java:264)
+! at com.interview.ServiceDAO.getAccount(ServiceDAO.java:33)
+! at com.interview.ServiceResource.getAllAccounts(ServiceResource.java:41)
+! at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+! at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+! at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+! at java.lang.reflect.Method.invoke(Method.java:497)
+! at org.glassfish.jersey.server.model.internal.ResourceMethodInvocationHandlerFactory$1.invoke(ResourceMethodInvocationHandlerFactory.java:81)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher$1.run(AbstractJavaResourceMethodDispatcher.java:144)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.invoke(AbstractJavaResourceMethodDispatcher.java:161)
+! at org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$TypeOutInvoker.doDispatch(JavaResourceMethodDispatcherProvider.java:205)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.dispatch(AbstractJavaResourceMethodDispatcher.java:99)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:389)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:347)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:102)
+! at org.glassfish.jersey.server.ServerRuntime$2.run(ServerRuntime.java:326)
+! at org.glassfish.jersey.internal.Errors$1.call(Errors.java:271)
+! at org.glassfish.jersey.internal.Errors$1.call(Errors.java:267)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:315)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:297)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:267)
+! at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:317)
+! at org.glassfish.jersey.server.ServerRuntime.process(ServerRuntime.java:305)
+! at org.glassfish.jersey.server.ApplicationHandler.handle(ApplicationHandler.java:1154)
+! at org.glassfish.jersey.servlet.WebComponent.serviceImpl(WebComponent.java:473)
+! at org.glassfish.jersey.servlet.WebComponent.service(WebComponent.java:427)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:388)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:341)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:228)
+! at io.dropwizard.jetty.NonblockingServletHolder.handle(NonblockingServletHolder.java:49)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1689)
+! at io.dropwizard.servlets.ThreadNameFilter.doFilter(ThreadNameFilter.java:34)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1676)
+! at io.dropwizard.jersey.filter.AllowedMethodsFilter.handle(AllowedMethodsFilter.java:50)
+! at io.dropwizard.jersey.filter.AllowedMethodsFilter.doFilter(AllowedMethodsFilter.java:44)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1676)
+! at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:581)
+! at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1174)
+! at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:511)
+! at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1106)
+! at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:134)
+! at com.codahale.metrics.jetty9.InstrumentedHandler.handle(InstrumentedHandler.java:240)
+! at io.dropwizard.jetty.RoutingHandler.handle(RoutingHandler.java:51)
+! at org.eclipse.jetty.server.handler.gzip.GzipHandler.handle(GzipHandler.java:459)
+! at io.dropwizard.jetty.BiDiGzipHandler.handle(BiDiGzipHandler.java:68)
+! at org.eclipse.jetty.server.handler.StatisticsHandler.handle(StatisticsHandler.java:169)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:134)
+! at org.eclipse.jetty.server.Server.handle(Server.java:524)
+! at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:319)
+! at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:253)
+! at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:273)
+! at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:95)
+! at org.eclipse.jetty.io.SelectChannelEndPoint$2.run(SelectChannelEndPoint.java:93)
+! at org.eclipse.jetty.util.thread.strategy.ExecuteProduceConsume.executeProduceConsume(ExecuteProduceConsume.java:303)
+! at org.eclipse.jetty.util.thread.strategy.ExecuteProduceConsume.produceConsume(ExecuteProduceConsume.java:148)
+! at org.eclipse.jetty.util.thread.strategy.ExecuteProduceConsume.run(ExecuteProduceConsume.java:136)
+! at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:671)
+! at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:589)
+! at java.lang.Thread.run(Thread.java:745)
+! Caused by: java.lang.InstantiationException: com.interview.Account
+! at java.lang.Class.newInstance(Class.java:427)
+! at org.skife.jdbi.v2.BeanMapper.map(BeanMapper.java:61)
+! ... 65 common frames omitted
+! Caused by: java.lang.NoSuchMethodException: com.interview.Account.<init>()
+! at java.lang.Class.getConstructor0(Class.java:3082)
+! at java.lang.Class.newInstance(Class.java:412)
+! ... 66 common frames omitted
+level="INFO" timestamp="2017-03-30 18:15:36,634Z" category="org.eclipse.jetty.server.AbstractConnector" Stopped application@43f9dd56{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
+level="INFO" timestamp="2017-03-30 18:15:36,636Z" category="org.eclipse.jetty.server.AbstractConnector" Stopped admin@1d12e953{HTTP/1.1,[http/1.1]}{0.0.0.0:8081}
+level="INFO" timestamp="2017-03-30 18:15:36,637Z" category="org.eclipse.jetty.server.handler.ContextHandler" Stopped i.d.j.MutableServletContextHandler@32507479{/,null,UNAVAILABLE}
+level="INFO" timestamp="2017-03-30 18:15:36,639Z" category="org.eclipse.jetty.server.handler.ContextHandler" Stopped i.d.j.MutableServletContextHandler@224c7de4{/,null,UNAVAILABLE}
+level="INFO" timestamp="2017-03-30 18:15:54,098Z" category="org.eclipse.jetty.util.log" Logging initialized @1162ms
+level="INFO" timestamp="2017-03-30 18:15:54,157Z" category="io.dropwizard.server.DefaultServerFactory" Registering jersey handler with root path prefix: /
+level="INFO" timestamp="2017-03-30 18:15:54,158Z" category="io.dropwizard.server.DefaultServerFactory" Registering admin handler with root path prefix: /
+level="INFO" timestamp="2017-03-30 18:15:54,177Z" category="org.flywaydb.core.internal.util.VersionPrinter" Flyway 4.0.3 by Boxfuse
+level="INFO" timestamp="2017-03-30 18:15:54,332Z" category="org.flywaydb.core.internal.dbsupport.DbSupportFactory" Database: jdbc:postgresql://localhost:5432/circle (PostgreSQL 9.6)
+level="INFO" timestamp="2017-03-30 18:15:54,396Z" category="org.flywaydb.core.internal.command.DbClean" Successfully cleaned schema "public" (execution time 00:00.032s)
+level="INFO" timestamp="2017-03-30 18:15:54,433Z" category="org.flywaydb.core.internal.dbsupport.DbSupportFactory" Database: jdbc:postgresql://localhost:5432/circle (PostgreSQL 9.6)
+level="INFO" timestamp="2017-03-30 18:15:54,456Z" category="org.flywaydb.core.internal.command.DbValidate" Successfully validated 1 migration (execution time 00:00.016s)
+level="INFO" timestamp="2017-03-30 18:15:54,472Z" category="org.flywaydb.core.internal.metadatatable.MetaDataTableImpl" Creating Metadata table: "public"."schema_version"
+level="INFO" timestamp="2017-03-30 18:15:54,557Z" category="org.flywaydb.core.internal.command.DbMigrate" Current version of schema "public": << Empty Schema >>
+level="INFO" timestamp="2017-03-30 18:15:54,557Z" category="org.flywaydb.core.internal.command.DbMigrate" Migrating schema "public" to version 1 - Accounts
+level="INFO" timestamp="2017-03-30 18:15:54,656Z" category="org.flywaydb.core.internal.command.DbMigrate" Successfully applied 1 migration to schema "public" (execution time 00:00.185s).
+level="INFO" timestamp="2017-03-30 18:15:54,709Z" category="io.dropwizard.server.DefaultServerFactory" Registering jersey handler with root path prefix: /
+level="INFO" timestamp="2017-03-30 18:15:54,709Z" category="io.dropwizard.server.DefaultServerFactory" Registering admin handler with root path prefix: /
+level="INFO" timestamp="2017-03-30 18:15:54,710Z" category="io.dropwizard.server.ServerFactory" Starting ServiceApplication
+level="INFO" timestamp="2017-03-30 18:15:54,783Z" category="org.eclipse.jetty.setuid.SetUIDListener" Opened application@23eee4b8{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
+level="INFO" timestamp="2017-03-30 18:15:54,784Z" category="org.eclipse.jetty.setuid.SetUIDListener" Opened admin@28952dea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081}
+level="INFO" timestamp="2017-03-30 18:15:54,785Z" category="org.eclipse.jetty.server.Server" jetty-9.3.9.v20160517
+level="INFO" timestamp="2017-03-30 18:15:55,188Z" category="io.dropwizard.jersey.DropwizardResourceConfig" The following paths were found for the configured resources:
+
+    GET     /api/accounts (com.interview.ServiceResource)
+    GET     /api/accounts/{id} (com.interview.ServiceResource)
+    GET     /api/ping (com.interview.ServiceResource)
+
+level="INFO" timestamp="2017-03-30 18:15:55,189Z" category="org.eclipse.jetty.server.handler.ContextHandler" Started i.d.j.MutableServletContextHandler@7718a40f{/,null,AVAILABLE}
+level="INFO" timestamp="2017-03-30 18:15:55,193Z" category="io.dropwizard.setup.AdminEnvironment" tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+level="INFO" timestamp="2017-03-30 18:15:55,197Z" category="org.eclipse.jetty.server.handler.ContextHandler" Started i.d.j.MutableServletContextHandler@5f038248{/,null,AVAILABLE}
+level="INFO" timestamp="2017-03-30 18:15:55,203Z" category="org.eclipse.jetty.server.AbstractConnector" Started application@23eee4b8{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
+level="INFO" timestamp="2017-03-30 18:15:55,204Z" category="org.eclipse.jetty.server.AbstractConnector" Started admin@28952dea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081}
+level="INFO" timestamp="2017-03-30 18:15:55,204Z" category="org.eclipse.jetty.server.Server" Started @2268ms
+level="ERROR" timestamp="2017-03-30 18:16:00,159Z" category="io.dropwizard.jersey.errors.LoggingExceptionMapper" Error handling a request: 8e442543f79ee939
+! java.lang.IllegalArgumentException: A bean, com.interview.Account, was mapped which was not instantiable
+! at org.skife.jdbi.v2.BeanMapper.map(BeanMapper.java:64)
+! at org.skife.jdbi.v2.Query$4.munge(Query.java:183)
+! at org.skife.jdbi.v2.QueryResultSetMunger.munge(QueryResultSetMunger.java:41)
+! at org.skife.jdbi.v2.SQLStatement.internalExecute(SQLStatement.java:1344)
+! at org.skife.jdbi.v2.Query.fold(Query.java:173)
+! at org.skife.jdbi.v2.Query.first(Query.java:273)
+! at org.skife.jdbi.v2.Query.first(Query.java:264)
+! at com.interview.ServiceDAO.getAccount(ServiceDAO.java:33)
+! at com.interview.ServiceResource.getAllAccounts(ServiceResource.java:41)
+! at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+! at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+! at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+! at java.lang.reflect.Method.invoke(Method.java:497)
+! at org.glassfish.jersey.server.model.internal.ResourceMethodInvocationHandlerFactory$1.invoke(ResourceMethodInvocationHandlerFactory.java:81)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher$1.run(AbstractJavaResourceMethodDispatcher.java:144)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.invoke(AbstractJavaResourceMethodDispatcher.java:161)
+! at org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$TypeOutInvoker.doDispatch(JavaResourceMethodDispatcherProvider.java:205)
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.dispatch(AbstractJavaResourceMethodDispatcher.java:99)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:389)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:347)
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:102)
+! at org.glassfish.jersey.server.ServerRuntime$2.run(ServerRuntime.java:326)
+! at org.glassfish.jersey.internal.Errors$1.call(Errors.java:271)
+! at org.glassfish.jersey.internal.Errors$1.call(Errors.java:267)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:315)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:297)
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:267)
+! at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:317)
+! at org.glassfish.jersey.server.ServerRuntime.process(ServerRuntime.java:305)
+! at org.glassfish.jersey.server.ApplicationHandler.handle(ApplicationHandler.java:1154)
+! at org.glassfish.jersey.servlet.WebComponent.serviceImpl(WebComponent.java:473)
+! at org.glassfish.jersey.servlet.WebComponent.service(WebComponent.java:427)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:388)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:341)
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:228)
+! at io.dropwizard.jetty.NonblockingServletHolder.handle(NonblockingServletHolder.java:49)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1689)
+! at io.dropwizard.servlets.ThreadNameFilter.doFilter(ThreadNameFilter.java:34)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1676)
+! at io.dropwizard.jersey.filter.AllowedMethodsFilter.handle(AllowedMethodsFilter.java:50)
+! at io.dropwizard.jersey.filter.AllowedMethodsFilter.doFilter(AllowedMethodsFilter.java:44)
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1676)
+! at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:581)
+! at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1174)
+! at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:511)
+! at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1106)
+! at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:134)
+! at com.codahale.metrics.jetty9.InstrumentedHandler.handle(InstrumentedHandler.java:240)
+! at io.dropwizard.jetty.RoutingHandler.handle(RoutingHandler.java:51)
+! at org.eclipse.jetty.server.handler.gzip.GzipHandler.handle(GzipHandler.java:459)
+! at io.dropwizard.jetty.BiDiGzipHandler.handle(BiDiGzipHandler.java:68)
+! at org.eclipse.jetty.server.handler.StatisticsHandler.handle(StatisticsHandler.java:169)
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:134)
+! at org.eclipse.jetty.server.Server.handle(Server.java:524)
+! at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:319)
+! at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:253)
+! at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:273)
+! at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:95)
+! at org.eclipse.jetty.io.SelectChannelEndPoint$2.run(SelectChannelEndPoint.java:93)
+! at org.eclipse.jetty.util.thread.strategy.ExecuteProduceConsume.executeProduceConsume(ExecuteProduceConsume.java:303)
+! at org.eclipse.jetty.util.thread.strategy.ExecuteProduceConsume.produceConsume(ExecuteProduceConsume.java:148)
+! at org.eclipse.jetty.util.thread.strategy.ExecuteProduceConsume.run(ExecuteProduceConsume.java:136)
+! at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:671)
+! at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:589)
+! at java.lang.Thread.run(Thread.java:745)
+! Caused by: java.lang.InstantiationException: com.interview.Account
+! at java.lang.Class.newInstance(Class.java:427)
+! at org.skife.jdbi.v2.BeanMapper.map(BeanMapper.java:61)
+! ... 65 common frames omitted
+! Caused by: java.lang.NoSuchMethodException: com.interview.Account.<init>()
+! at java.lang.Class.getConstructor0(Class.java:3082)
+! at java.lang.Class.newInstance(Class.java:412)
+! ... 66 common frames omitted
+level="INFO" timestamp="2017-03-30 18:16:19,898Z" category="org.eclipse.jetty.server.AbstractConnector" Stopped application@23eee4b8{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
+level="INFO" timestamp="2017-03-30 18:16:19,899Z" category="org.eclipse.jetty.server.AbstractConnector" Stopped admin@28952dea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081}
+level="INFO" timestamp="2017-03-30 18:16:19,900Z" category="org.eclipse.jetty.server.handler.ContextHandler" Stopped i.d.j.MutableServletContextHandler@5f038248{/,null,UNAVAILABLE}
+level="INFO" timestamp="2017-03-30 18:16:19,903Z" category="org.eclipse.jetty.server.handler.ContextHandler" Stopped i.d.j.MutableServletContextHandler@7718a40f{/,null,UNAVAILABLE}
+level="INFO" timestamp="2017-03-30 18:16:22,913Z" category="org.eclipse.jetty.util.log" Logging initialized @1560ms
+level="INFO" timestamp="2017-03-30 18:16:22,979Z" category="io.dropwizard.server.DefaultServerFactory" Registering jersey handler with root path prefix: /
+level="INFO" timestamp="2017-03-30 18:16:22,979Z" category="io.dropwizard.server.DefaultServerFactory" Registering admin handler with root path prefix: /
+level="INFO" timestamp="2017-03-30 18:16:23,002Z" category="org.flywaydb.core.internal.util.VersionPrinter" Flyway 4.0.3 by Boxfuse
+level="INFO" timestamp="2017-03-30 18:16:23,148Z" category="org.flywaydb.core.internal.dbsupport.DbSupportFactory" Database: jdbc:postgresql://localhost:5432/circle (PostgreSQL 9.6)
+level="INFO" timestamp="2017-03-30 18:16:23,217Z" category="org.flywaydb.core.internal.command.DbClean" Successfully cleaned schema "public" (execution time 00:00.035s)
+level="INFO" timestamp="2017-03-30 18:16:23,242Z" category="org.flywaydb.core.internal.dbsupport.DbSupportFactory" Database: jdbc:postgresql://localhost:5432/circle (PostgreSQL 9.6)
+level="INFO" timestamp="2017-03-30 18:16:23,256Z" category="org.flywaydb.core.internal.command.DbValidate" Successfully validated 1 migration (execution time 00:00.007s)
+level="INFO" timestamp="2017-03-30 18:16:23,269Z" category="org.flywaydb.core.internal.metadatatable.MetaDataTableImpl" Creating Metadata table: "public"."schema_version"
+level="INFO" timestamp="2017-03-30 18:16:23,359Z" category="org.flywaydb.core.internal.command.DbMigrate" Current version of schema "public": << Empty Schema >>
+level="INFO" timestamp="2017-03-30 18:16:23,359Z" category="org.flywaydb.core.internal.command.DbMigrate" Migrating schema "public" to version 1 - Accounts
+level="INFO" timestamp="2017-03-30 18:16:23,467Z" category="org.flywaydb.core.internal.command.DbMigrate" Successfully applied 1 migration to schema "public" (execution time 00:00.199s).
+level="INFO" timestamp="2017-03-30 18:16:23,518Z" category="io.dropwizard.server.DefaultServerFactory" Registering jersey handler with root path prefix: /
+level="INFO" timestamp="2017-03-30 18:16:23,518Z" category="io.dropwizard.server.DefaultServerFactory" Registering admin handler with root path prefix: /
+level="INFO" timestamp="2017-03-30 18:16:23,519Z" category="io.dropwizard.server.ServerFactory" Starting ServiceApplication
+level="INFO" timestamp="2017-03-30 18:16:23,586Z" category="org.eclipse.jetty.setuid.SetUIDListener" Opened application@23eee4b8{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
+level="INFO" timestamp="2017-03-30 18:16:23,586Z" category="org.eclipse.jetty.setuid.SetUIDListener" Opened admin@28952dea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081}
+level="INFO" timestamp="2017-03-30 18:16:23,587Z" category="org.eclipse.jetty.server.Server" jetty-9.3.9.v20160517
+level="INFO" timestamp="2017-03-30 18:16:23,981Z" category="io.dropwizard.jersey.DropwizardResourceConfig" The following paths were found for the configured resources:
+
+    GET     /api/accounts (com.interview.ServiceResource)
+    GET     /api/accounts/{id} (com.interview.ServiceResource)
+    GET     /api/ping (com.interview.ServiceResource)
+
+level="INFO" timestamp="2017-03-30 18:16:23,983Z" category="org.eclipse.jetty.server.handler.ContextHandler" Started i.d.j.MutableServletContextHandler@7718a40f{/,null,AVAILABLE}
+level="INFO" timestamp="2017-03-30 18:16:23,987Z" category="io.dropwizard.setup.AdminEnvironment" tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+level="INFO" timestamp="2017-03-30 18:16:23,991Z" category="org.eclipse.jetty.server.handler.ContextHandler" Started i.d.j.MutableServletContextHandler@5f038248{/,null,AVAILABLE}
+level="INFO" timestamp="2017-03-30 18:16:23,997Z" category="org.eclipse.jetty.server.AbstractConnector" Started application@23eee4b8{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
+level="INFO" timestamp="2017-03-30 18:16:23,998Z" category="org.eclipse.jetty.server.AbstractConnector" Started admin@28952dea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081}
+level="INFO" timestamp="2017-03-30 18:16:23,998Z" category="org.eclipse.jetty.server.Server" Started @2646ms
+level="INFO" timestamp="2017-03-30 18:16:30,767Z" category="org.eclipse.jetty.server.AbstractConnector" Stopped application@23eee4b8{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
+level="INFO" timestamp="2017-03-30 18:16:30,768Z" category="org.eclipse.jetty.server.AbstractConnector" Stopped admin@28952dea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081}
+level="INFO" timestamp="2017-03-30 18:16:30,769Z" category="org.eclipse.jetty.server.handler.ContextHandler" Stopped i.d.j.MutableServletContextHandler@5f038248{/,null,UNAVAILABLE}
+level="INFO" timestamp="2017-03-30 18:16:30,771Z" category="org.eclipse.jetty.server.handler.ContextHandler" Stopped i.d.j.MutableServletContextHandler@7718a40f{/,null,UNAVAILABLE}
