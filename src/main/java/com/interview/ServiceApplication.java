@@ -7,7 +7,10 @@ import io.dropwizard.flyway.FlywayFactory;
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+//import io.dropwizard.jersey.setup.JerseyEnvironment;
 import org.skife.jdbi.v2.DBI;
+//import org.flywaydb.core.Flyway;
+//import com.codahale.metrics.MetricRegistry;
 
 /**
  * http://www.dropwizard.io/1.0.6/docs/manual/core.html#application
