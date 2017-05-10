@@ -15,9 +15,11 @@ import static jdk.nashorn.internal.runtime.PropertyDescriptor.GET;
 @Consumes(MediaType.APPLICATION_JSON)
 public class ServiceResource {
 
+
+
     private ServiceDAO dao;
 
-    public ServiceResource(ServiceDAO dao) {
+    ServiceResource(ServiceDAO dao) {
         this.dao = dao;
     }
 
@@ -38,6 +40,16 @@ public class ServiceResource {
     @Path("/accounts/{id}")
     public Account getAllAccounts(@PathParam("id") String id) {
         return dao.getAccount(id);
+    }
+
+    @POST
+    @Path("/accounts/transfer")
+    public List<Account> makeTransfer(@HeaderParam("srcid") String srcid,
+                                      @HeaderParam("destid") String dstid,
+                                      @HeaderParam("amount") Integer amount,
+                                      @HeaderParam( "exchangemeans" ) String means) {
+
+        return null ;//dao.makeTransfer( srcid, dstid, amount, means);
     }
 
 }
