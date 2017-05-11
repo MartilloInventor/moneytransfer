@@ -1,46 +1,67 @@
-The basic data model consists of the following classes:
+The basic data model consists of the following class:
 
-1. Account,which has an account id and which can either be a source or
-a destination;
+Account,which has an account id and an amount.
 
-2. Transfer, which specifies a source Account, a destination Account,
-and an Amount;
+Currently, no health checks or metrics are present, but one could consider the following endpoints to provide limity sanity checking.
 
-3. Amount
+/api/ping -- returns "pong" and shows service is alive
 
-These classes can reference description classes.
+/api/version -- version of service. 1.0.0 is synchronous and has potentially lower performance.
 
-Amount can have a numeric value, which should probably be BigDecimal,
-and should reference a Currency, which itself also references a
-description class.
+/api/postgres -- checks the version of deployed postgres and is useful in case postgres seems to have anomalous behavior.
 
-The final necessary class structure could be a good deal more complex
-than the problem envisions.
+Here are the main REST API endpoints.
 
-For example a User, who probably has a Loginname and Password,
-probably has multiple Accounts for multiple Purposes and probably each
-denominated in at least one currency. To tell the truth there is no
-reason to restrict Accounts to Currencies. They might be denominated
-in Commodities like gold, silver, copper, oil, etc.
+HTTP GET
 
-Here are URLs for the BigDecimal and Currency Java classes.
+/accounts
+    Lists all the accounts and details of each
 
-https://docs.oracle.com/javase/7/docs/api/java/math/BigDecimal.html
+/accounts/{id}
+    Lists the details of account {id} (error code if account nonexistent -- maybe should be revisited)
 
-https://docs.oracle.com/javase/7/docs/api/java/util/Currency.html
+/accounts/balance/{id}
+    Returns the balance of account {id} (0 if account nonexistent)
+    
 
-(The Currency class would probably have to be extended in a complete solution.)
+HTTP POST
 
-Unfortunately there seems to be no standard Java class for financial instruments.
+/api/accounts/balance/{id} amount=Integer 
+    Sets the balance of account {id} to (non-negative)amount with account creation if necessary
 
-The endpoints of the rest API (relative to /api) are:
+/api/accounts/addtobalance/{id} amount=Integer
+    Adds amount, which may be negative, to balance of account {id}, result >= 0, returns number of modified rows
 
-/ -- ping
+/api/accounts/transfer srcid=String dstid=String amount=Integer
+    transfers positive amount from account srcid to dstid if both srcid and dstid exist.
+    
+ HTTP POST v2 
+ In this case the "in progress" response is immediate and the database action takes place in a separate thread which runs to completion. 
+ 
+ This approach should provide higher performance. The transaction along with success or failure can be logged to another database that should be accessible from a web browser.
+ 
+ The actual account database should probably be sharded to increase possible parallelism, and it should be replicated to increase system persistence and accessibility.
+ 
+ Even without the existence of a log database that indicates success or failure of the POST operation, success or failure indication can be found through the GET operations.
+ 
+ Note that it might be worthwhile to couple the asynchronous interface with some sort of fault recovery system like Hystrix.
+ 
+ Note that the postgres database in the docker container is not persistent. This URL immediately following explains how to make the postgres database data persistent.
+ 
+ https://www.andreagrandi.it/2015/02/21/how-to-create-a-docker-image-for-postgresql-and-persist-data/
+ 
+ V2 Endpoints
+ 
+ /api/accounts/balance/v2/{id} amount=Integer 
+     Sets the balance of account {id} to (non-negative)amount with account creation if necessary
+ 
+ /api/accounts/addtobalance/v2/{id} amount=Integer
+     Adds amount, which may be negative, to balance of account {id}, result >= 0, returns number of modified rows
+ 
+ /api/accounts/transfer/v2 srcid=String dstid=String amount=Integer
+     transfers positive amount from account srcid to dstid if both srcid and dstid exist.
+   
 
-/accounts GET -- returns all accounts in a JSON list
 
-/accounts/{ID} GET -- returns JSON descriptions of account
-
-/transfer PUSH srcid=STRING dstid=STRING amount=FLOAT instrument=STRING
 
 

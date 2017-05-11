@@ -12,13 +12,13 @@ import java.util.List;
 
 
 public class ServiceDAO {
-
     private DBI dbi;
 
     ServiceDAO(DBI dbi) {
         this.dbi = dbi;
     }
 
+    //  We should really use try with resources instead of try + finally
 
     public List<Account> getAllAccounts() {
         try (Handle h = dbi.open()) {
@@ -38,31 +38,77 @@ public class ServiceDAO {
         }
     }
 
+    /* in case we see obscure behavior from older version of postgres */
     public String getPostgresVersion() {
         try (Handle h = dbi.open()) {
-            return "\"" + h.createQuery("SELECT version();").first().toString() + "\"";
+            return "\"" + h.createQuery( "SELECT version();" ).first().toString() + "\"";
         }
     }
 
     public Integer getAccountBalance(String id) {
-        Account result = getAccount(id);
-        if(result == null) return 0; // Older Java may have required Integer object here.
+        Account result = getAccount( id );
+        if (result == null) return 0; // Older Java may have required Integer object here.
         return result.getBalance();
     }
 
+    // resets an account or opens one. balance can be zero but not negative after execution
     public Integer setAccountBalance(String id, Integer balance) {
+        if (balance < 0) {
+            return 0;
+        }
         try (Handle h = dbi.open()) {
-            return h.createStatement("insert into accounts (id, balance) values (:id, :balance1)" +
-                    "ON CONFLICT (id) DO UPDATE SET balance = :balance2;")
-                    .bind("id", id)
-                    .bind("balance1", balance)
-                    .bind("balance2", balance)
+            return h.createStatement( "INSERT INTO accounts (id, balance) VALUES (:id, :balance1)" +
+                    "ON CONFLICT (id) DO UPDATE SET balance = :balance2;" )
+                    .bind( "id", id )
+                    .bind( "balance1", balance )
+                    .bind( "balance2", balance )
                     .execute();
         }
     }
 
-    public Integer addValueAccountBalance(String id, Integer balance) {
-        return balance;
+    /* allows account to be zeroed */
+    public Integer addToAccountBalance(String id, Integer amount) {
+        try (Handle h = dbi.open()) {
+            return h.createStatement( "UPDATE accounts SET balance = balance + :amount1 " +
+                    "WHERE (id = :id) AND ((balance + :amount2) >= 0 );" )
+                    .bind( "amount1", amount )
+                    .bind( "id", id )
+                    .bind( "amount2", amount )
+                    .execute();
+        }
     }
 
+    /* only transferring from src to dst. I could change that. Src & dst must exist. */
+    public String makeTransfer(String srcid, String dstid, Integer amount) {
+        // 0 or negative transfer disallowed.
+        if (amount <= 0) {
+            return "\"Failed\"";
+        }
+        try (Handle h = dbi.open()) {
+            if (h.createStatement( "UPDATE accounts SET balance = balance + :amount1 " +
+                    "WHERE (id = :id) AND ((balance + :amount2) > 0 );" )
+                    .bind( "amount1", -amount )
+                    .bind( "id", srcid )
+                    .bind( "amount2", -amount )
+                    .execute() == 0) {
+                return "\"Failed\"";
+            }
+            if (h.createStatement( "UPDATE accounts SET balance = balance + :amount1 " +
+                    "WHERE (id = :id) AND ((balance + :amount2) > 0 );" )
+                    .bind( "amount1", amount )
+                    .bind( "id", dstid )
+                    .bind( "amount2", amount )
+                    .execute() == 0) {
+                // put the money back -- maybe should check for existence first
+                // maybe should change this one to upsert
+                h.createStatement( "UPDATE accounts SET balance = balance + :amount1 " +
+                        "WHERE (id = :id) AND ((balance + :amount2) > 0 );" )
+                        .bind( "amount1", amount )
+                        .bind( "id", srcid )
+                        .bind( "amount2", amount );
+                return "\"Failed\"";
+            }
+        }
+        return "\"Succeeeded\"";
+    }
 }
