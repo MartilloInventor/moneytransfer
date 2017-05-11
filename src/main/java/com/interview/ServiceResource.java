@@ -15,8 +15,6 @@ import static jdk.nashorn.internal.runtime.PropertyDescriptor.GET;
 @Consumes(MediaType.APPLICATION_JSON)
 public class ServiceResource {
 
-
-
     private ServiceDAO dao;
 
     ServiceResource(ServiceDAO dao) {
@@ -24,11 +22,11 @@ public class ServiceResource {
     }
 
     @GET
-    @javax.ws.rs.Path("ping")
+    @Path("/ping")
     public String ping() {
-        return "Pong";
+        /* Must add the \"'s to be proper JSON object to be returned to browser */
+        return "\"Pong\"";
     }
-
 
     @GET
     @Path("/accounts")
@@ -42,12 +40,29 @@ public class ServiceResource {
         return dao.getAccount(id);
     }
 
+    @GET
+    @Path("/accounts/balance/{id}")
+    public Integer getAccountBalance(@PathParam("id") String id) {
+        return dao.getAccountBalance(id);
+    }
+
+    @GET
+    @Path("/postgres")
+    public String getPostgresVersion() {
+        return dao.getPostgresVersion();
+    }
+
+    @POST
+    @Path("/accounts/balance/{id}")
+    public Integer setAccountBalance(@PathParam("id") String id, @HeaderParam( "amount" ) Integer amount) {
+        return dao.setAccountBalance(id,amount);
+
+    }
     @POST
     @Path("/accounts/transfer")
     public List<Account> makeTransfer(@HeaderParam("srcid") String srcid,
                                       @HeaderParam("destid") String dstid,
-                                      @HeaderParam("amount") Integer amount,
-                                      @HeaderParam( "exchangemeans" ) String means) {
+                                      @HeaderParam("amount") Integer amount) {
 
         return null ;//dao.makeTransfer( srcid, dstid, amount, means);
     }

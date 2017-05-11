@@ -20,7 +20,7 @@ public class ServiceDAO {
     }
 
 
-    List<Account> getAllAccounts() {
+    public List<Account> getAllAccounts() {
         try (Handle h = dbi.open()) {
             return h.createQuery( "SELECT * FROM accounts;" )
                     .mapTo( Account.class )
@@ -28,13 +28,19 @@ public class ServiceDAO {
         }
     }
 
-    Account getAccount(String id) {
+    public Account getAccount(String id) {
         try (Handle h = dbi.open()) {
             return h.createQuery( "SELECT * FROM accounts " +
                     " WHERE id=:id;" )
                     .bind( "id", id )
                     .mapTo( Account.class )
                     .first();
+        }
+    }
+
+    public String getPostgresVersion() {
+        try (Handle h = dbi.open()) {
+            return "\"" + h.createQuery("SELECT version();").first().toString() + "\"";
         }
     }
 
@@ -45,7 +51,14 @@ public class ServiceDAO {
     }
 
     public Integer setAccountBalance(String id, Integer balance) {
-        return balance;
+        try (Handle h = dbi.open()) {
+            return h.createStatement("insert into accounts (id, balance) values (:id, :balance1)" +
+                    "ON CONFLICT (id) DO UPDATE SET balance = :balance2;")
+                    .bind("id", id)
+                    .bind("balance1", balance)
+                    .bind("balance2", balance)
+                    .execute();
+        }
     }
 
     public Integer addValueAccountBalance(String id, Integer balance) {
