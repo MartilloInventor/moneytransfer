@@ -60,7 +60,26 @@ HTTP POST
  
  /api/accounts/transfer/v2 srcid=String dstid=String amount=Integer
      transfers positive amount from account srcid to dstid if both srcid and dstid exist.
-   
+     
+ CLIENT API
+ 
+ class 
+     Account
+     AccessClient
+ 
+ methods
+  
+     static public String sendInterviewPing()
+     static public String getInterviewVersion() 
+     static public String getInterviewPostgresVersion()
+     
+     static public List<Account> getInterviewAccount()
+     static public Account getInterviewAccount(String id)
+     static public Integer getInterviewAccountBalance(String id)
+     
+     static public void setInterviewAccountBalance(String acct, int amount)
+     static public void addInterviewAccountBalance(String acct, int amount)
+     static public void makeTransfer(String src, String dst, int amount) 
 
 
 
