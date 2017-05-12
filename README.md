@@ -1,41 +1,36 @@
 The basic data model consists of the following class:
 
-Account,which has an account id and an amount.
+Account, which has an account id and an amount.
 
 Currently, no health checks or metrics are present, but one could consider the following endpoints to provide limity sanity checking.
 
-/api/ping -- returns "pong" and shows service is alive
+`/api/ping -- returns "pong" and shows service is alive`
 
-/api/version -- version of service. 1.0.0 is synchronous and has potentially lower performance.
+`/api/version -- version of service. 1.0.0 is synchronous and has potentially lower performance.`
 
-/api/postgres -- checks the version of deployed postgres and is useful in case postgres seems to have anomalous behavior.
+`/api/postgres -- checks the version of deployed postgres and is useful in case postgres seems to have anomalous behavior.`
 
 Here are the main REST API endpoints.
 
-HTTP GET
+**HTTP GET**
 
-/accounts
-    Lists all the accounts and details of each
+`/accounts -- Lists all the accounts and details of each`
 
-/accounts/{id}
-    Lists the details of account {id} (error code if account nonexistent -- maybe should be revisited)
+`/accounts/{id} -- Lists the details of account {id} (error code if account nonexistent -- maybe should be revisited)`
 
-/accounts/balance/{id}
-    Returns the balance of account {id} (0 if account nonexistent)
+`/accounts/balance/{id} -- Returns the balance of account {id} (0 if account nonexistent)`
     
 
-HTTP POST
+**HTTP POST**
 
-/api/accounts/balance/{id} amount=Integer 
-    Sets the balance of account {id} to (non-negative)amount with account creation if necessary
+`/api/accounts/balance/{id} amount=Integer -- Sets the balance of account {id} to (non-negative)amount with account creation if necessary`
 
-/api/accounts/addtobalance/{id} amount=Integer
-    Adds amount, which may be negative, to balance of account {id}, result >= 0, returns number of modified rows
+`/api/accounts/addtobalance/{id} amount=Integer -- Adds amount, which may be negative, to balance of account {id}, result >= 0, returns number of modified rows`
 
-/api/accounts/transfer srcid=String dstid=String amount=Integer
-    transfers positive amount from account srcid to dstid if both srcid and dstid exist.
+`/api/accounts/transfer srcid=String dstid=String amount=Integer -- Transfers positive amount from account srcid to dstid if both srcid and dstid exist.`
     
- HTTP POST v2 
+ **HTTP POST v2** 
+ 
  In this case the "in progress" response is immediate and the database action takes place in a separate thread which runs to completion. 
  
  This approach should provide higher performance. The transaction along with success or failure can be logged to another database that should be accessible from a web browser.
@@ -50,24 +45,26 @@ HTTP POST
  
  https://www.andreagrandi.it/2015/02/21/how-to-create-a-docker-image-for-postgresql-and-persist-data/
  
- V2 Endpoints
+ **V2 Endpoints**
  
- /api/accounts/balance/v2/{id} amount=Integer 
-     Sets the balance of account {id} to (non-negative)amount with account creation if necessary
+` /api/accounts/balance/v2/{id} amount=Integer -- Sets the balance of account {id} to (non-negative)amount with account creation if necessary`
  
- /api/accounts/addtobalance/v2/{id} amount=Integer
-     Adds amount, which may be negative, to balance of account {id}, result >= 0, returns number of modified rows
+ `/api/accounts/addtobalance/v2/{id} amount=Integer -- Adds amount, which may be negative, to balance of account {id}, result >= 0, returns number of modified rows`
  
- /api/accounts/transfer/v2 srcid=String dstid=String amount=Integer
-     transfers positive amount from account srcid to dstid if both srcid and dstid exist.
+ `/api/accounts/transfer/v2 srcid=String dstid=String amount=Integer -- ransfers positive amount from account srcid to dstid if both srcid and dstid exist.`
      
- CLIENT API
+ **CLIENT API**
  
- class 
+ The client api is found in the moneytransferclient project. I could probably redo this as a single maven project which had a maven parent directory moneytransfer and two maven modules/children named moneytransferserver and moneytransferclient. 
+ 
+ For now I will not do the work to restructure the maven projects. 
+ 
+ _classes_
+  
      Account
      AccessClient
  
- methods
+ _methods of AccessClient_
   
      static public String sendInterviewPing()
      static public String getInterviewVersion() 
@@ -81,6 +78,29 @@ HTTP POST
      static public void addInterviewAccountBalance(String acct, int amount)
      static public void makeTransfer(String src, String dst, int amount) 
 
+**NOTES**
 
+In a real service for moving money/financial instruments between accounts, we would probably use classes like Currency and BigDecimal.
 
+https://docs.oracle.com/javase/7/docs/api/java/util/Currency.html
 
+https://docs.oracle.com/javase/7/docs/api/java/math/BigDecimal.html
+
+A generic financial/quant package that covers the universe of financial instruments does not seem to be available.
+
+_Starting up the Postgress Server_
+    
+`sudo docker run --name circle_postgres -p 5432:5432 -e POSTGRES_PASSWORD=circle -e POSTGRES_USER=circle -e POSTGRES_DB=circle postgres`
+    
+Note that the following command is used to free up the container name from the docker daemon.
+    
+`sudo docker rm /circle_postgres`
+    
+
+_Creating the Docker Server_
+    
+_Increasing Peformance in the Cloud_
+    
+    
+    
+    
