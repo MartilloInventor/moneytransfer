@@ -41,10 +41,6 @@ Here are the main REST API endpoints.
  
  Note that it might be worthwhile to couple the asynchronous interface with some sort of fault recovery system like Hystrix.
  
- Note that the postgres database in the docker container is not persistent. This URL immediately following explains how to make the postgres database data persistent.
- 
- https://www.andreagrandi.it/2015/02/21/how-to-create-a-docker-image-for-postgresql-and-persist-data/
- 
  **V2 Endpoints**
  
 ` /api/accounts/balance/v2/{id} amount=Integer -- Sets the balance of account {id} to (non-negative)amount with account creation if necessary`
@@ -82,24 +78,109 @@ Here are the main REST API endpoints.
 
 In a real service for moving money/financial instruments between accounts, we would probably use classes like Currency and BigDecimal.
 
-https://docs.oracle.com/javase/7/docs/api/java/util/Currency.html
+https://docs.oracle.com/javase/8/docs/api/java/util/Currency.html
 
-https://docs.oracle.com/javase/7/docs/api/java/math/BigDecimal.html
+https://docs.oracle.com/javase/8/docs/api/java/math/BigDecimal.html
 
 A generic financial/quant package that covers the universe of financial instruments does not seem to be available.
 
-_Starting up the Postgress Server_
+_Starting up and Terminating the Postgres Server_
     
 `sudo docker run --name circle_postgres -p 5432:5432 -e POSTGRES_PASSWORD=circle -e POSTGRES_USER=circle -e POSTGRES_DB=circle postgres`
     
 Note that the following command is used to free up the container name from the docker daemon.
     
 `sudo docker rm /circle_postgres`
+
+_Persisting the Postgress Database_
+
+The service can clean, repair, migrate, vali. It might be more fun if the database were persistent independent of terminating and restarting the service. To do so would entail modifying the startup code, but more would need to be done.
+
+ Note that the postgres database in the docker container is not persistent. This URL immediately following explains how to make the postgres database data persistent.
+ 
+ https://www.andreagrandi.it/2015/02/21/how-to-create-a-docker-image-for-postgresql-and-persist-data/
+ 
+ After I get everything to work, I may experiment with the persistence issues. In doing the quiz, it is good for the database to be reinitialized because exceptions can easily cause the database to be corrupted.
     
 
 _Creating the Docker Server_
+
+The first problem was the creation of a shaded executable jar that could read the configuration.yml file.
+
+I had to add the following <plugin> xml to the <build> section of the pom.xml.
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <createDependencyReducedPom>true</createDependencyReducedPom>
+                    <filters>
+                        <filter>
+                            <artifact>*:*</artifact>
+                            <excludes>
+                                <exclude>META-INF/*.SF</exclude>
+                                <exclude>META-INF/*.DSA</exclude>
+                                <exclude>META-INF/*.RSA</exclude>
+                            </excludes>
+                        </filter>
+                    </filters>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>${mainClass}</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
     
-_Increasing Peformance in the Cloud_
+_Increasing and Improving Peformance in the Cloud_
+
+More performance can be achieved by deployment of multiple instances in a private cloud in which multiple instances of the service are instantiating in addition to sharding (and replicating) the database.
+
+In a typical cloud environment like AWS, I would use Concourse (for deployment) + rundeck + singularity (which runs on top of Mesos and which generalizes docker) + barragon + nginx.
+
+I have started to experiment with this technology. (Hubspot seems to provide a lot of interesting software.)
+
+(I would probably probably add prometheus for white box diagnosis of the system as well as hystrix to manage recovery from failures when possible.)
+
+
+_Getting into the Container Bridge_
+
+Some useful commands. 
+
+    sudo docker run -itd --name container1 busybox
+
+    sudo docker network inspect bridge
+
+    sudo docker attach container1
+    
+    docker ps -a -q
+    
+    docker rmi image ...
+    
+    docker rm containerid
+    
+Now the circle_postgres service can be pinged from container1 busy box. Without DNS the IP address must be used.
+
+The docker-configuration.yml file must use the IP address to access postgres unless I set up DNS on the Container Bridge.
+
+
+
+
     
     
     
