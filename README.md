@@ -86,11 +86,13 @@ A generic financial/quant package that covers the universe of financial instrume
 
 _Starting up and Terminating the Postgres Server_
     
-`sudo docker run --name circle_postgres -p 5432:5432 -e POSTGRES_PASSWORD=circle -e POSTGRES_USER=circle -e POSTGRES_DB=circle postgres`
+    sudo docker run --name circle_postgres -p 5432:5432 -e POSTGRES_PASSWORD=circle -e POSTGRES_USER=circle -e POSTGRES_DB=circle postgres
     
-Note that the following command is used to free up the container name from the docker daemon.
+Note that the following command is used to free up the container name from the docker daemon. 
     
-`sudo docker rm /circle_postgres`
+    sudo docker rm /circle_postgres
+
+Leaving this image in the local docker registry is okay because I am not debugging it. I can just start it at need.
 
 _Persisting the Postgress Database_
 
@@ -172,11 +174,17 @@ Some useful commands.
     
     docker rmi image ...
     
+    docker start image
+    
     docker rm containerid
     
 Now the circle_postgres service can be pinged from container1 busy box. Without DNS the IP address must be used.
 
 The docker-configuration.yml file must use the IP address to access postgres unless I set up DNS on the Container Bridge.
+
+I tend to run busybox after starting docker postgres and before starting the application service. It lets me see into the container bridge.
+
+
 
 
 
