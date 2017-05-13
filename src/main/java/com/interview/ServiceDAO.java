@@ -68,6 +68,9 @@ public class ServiceDAO {
 
     /* allows account to be zeroed */
     public Integer addToAccountBalance(String id, Integer amount) {
+        if(amount == 0) {
+            return 0;
+        }
         try (Handle h = dbi.open()) {
             return h.createStatement( "UPDATE accounts SET balance = balance + :amount1 " +
                     "WHERE (id = :id) AND ((balance + :amount2) >= 0 );" )

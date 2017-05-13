@@ -63,21 +63,21 @@ public class ServiceResource {
 
     @POST
     @Path("/accounts/balance/{id}")
-    public Integer setAccountBalance(@PathParam("id") String id, @HeaderParam("amount") Integer amount) {
+    public Integer setAccountBalance(@PathParam("id") String id, @QueryParam("amount") Integer amount) {
         return dao.setAccountBalance( id, amount );
     }
 
     @POST
     @Path("/accounts/addtobalance/{id}")
-    public Integer addToAccountBalance(@PathParam("id") String id, @HeaderParam("amount") Integer amount) {
+    public Integer addToAccountBalance(@PathParam("id") String id, @QueryParam("amount") Integer amount) {
         return dao.addToAccountBalance( id, amount );
     }
 
     @POST
     @Path("/accounts/transfer")
-    public String makeTransfer(@HeaderParam("srcid") String srcid,
-                               @HeaderParam("dstid") String dstid,
-                               @HeaderParam("amount") Integer amount) {
+    public String makeTransfer(@QueryParam("srcid") String srcid,
+                               @QueryParam("dstid") String dstid,
+                               @QueryParam("amount") Integer amount) {
         return dao.makeTransfer( srcid, dstid, amount );
     }
 }

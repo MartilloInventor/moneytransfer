@@ -41,6 +41,10 @@ Here are the main REST API endpoints.
  
  Note that it might be worthwhile to couple the asynchronous interface with some sort of fault recovery system like Hystrix.
  
+ An alternative to a transaction log database might be using Prometheus gauges to keep track of the balances in accounts.
+ 
+ https://prometheus.io/docs/introduction/overview/
+ 
  **V2 Endpoints**
  
 ` /api/accounts/balance/v2/{id} amount=Integer -- Sets the balance of account {id} to (non-negative)amount with account creation if necessary`
@@ -51,7 +55,9 @@ Here are the main REST API endpoints.
      
  **CLIENT API**
  
- The client api is found in the moneytransferclient project. I could probably redo this as a single maven project which had a maven parent directory moneytransfer and two maven modules/children named moneytransferserver and moneytransferclient. 
+ The client api is found in the moneytransferclient project. I modeled it loosely on the Oanda FXApi. The endpoint to Oanda portal is assumed to be a constant string and is not provided as an argument to the methods.
+ 
+ I could probably redo this as a single maven project which had a maven parent directory moneytransfer and two maven modules/children named moneytransferserver and moneytransferclient. The Account class should really be in a jar used by both the service and the client. 
  
  For now I will not do the work to restructure the maven projects. 
  
@@ -73,6 +79,10 @@ Here are the main REST API endpoints.
      static public void setInterviewAccountBalance(String acct, int amount)
      static public void addInterviewAccountBalance(String acct, int amount)
      static public void makeTransfer(String src, String dst, int amount) 
+     
+      static public void setInterviewAccountBalanceV2(String acct, int amount)
+      static public void addInterviewAccountBalanceV2(String acct, int amount)
+      static public void makeTransferV2(String src, String dst, int amount)     
 
 **NOTES**
 
@@ -92,7 +102,7 @@ Note that the following command is used to free up the container name from the d
     
     sudo docker rm /circle_postgres
 
-Leaving this image in the local docker registry is okay because I am not debugging it. I can just start it at need.
+Leaving this image in the local docker registry is okay because I am not debugging it. I can just start it at need. Leaving dockerized images of the test application service is not such a good idea and quickly becomes confusing.
 
 _Persisting the Postgress Database_
 
