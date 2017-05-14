@@ -1,5 +1,4 @@
 server:
-
   # Jetty Web Server
   applicationConnectors:
     - type: http
@@ -9,6 +8,7 @@ server:
       port: 8081
   requestLog:
     appenders: []
+
 # DB
 database:
   # the name of your JDBC driver
@@ -64,11 +64,8 @@ flyway:
   # Whether to automatically call validate or not when running migrate. (default: true)
   validateOnMigrate: true
 
-
-
 # Logging settings.
 logging:
-
   # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
   level: INFO
 

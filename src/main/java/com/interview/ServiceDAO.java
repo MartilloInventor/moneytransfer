@@ -5,6 +5,9 @@ import org.skife.jdbi.v2.Handle;
 
 import java.util.List;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * http://www.dropwizard.io/1.0.6/docs/manual/jdbi.html
  * http://jdbi.org/dbi_handle_and_statement/
@@ -13,9 +16,11 @@ import java.util.List;
 
 public class ServiceDAO {
     private DBI dbi;
+    private ExecutorService executor;
 
     ServiceDAO(DBI dbi) {
         this.dbi = dbi;
+        this.executor = Executors.newCachedThreadPool();
     }
 
     //  We should really use try with resources instead of try + finally
@@ -68,7 +73,7 @@ public class ServiceDAO {
 
     /* allows account to be zeroed */
     public Integer addToAccountBalance(String id, Integer amount) {
-        if(amount == 0) {
+        if (amount == 0) {
             return 0;
         }
         try (Handle h = dbi.open()) {
@@ -89,7 +94,7 @@ public class ServiceDAO {
         }
         try (Handle h = dbi.open()) {
             if (h.createStatement( "UPDATE accounts SET balance = balance + :amount1 " +
-                    "WHERE (id = :id) AND ((balance + :amount2) > 0 );" )
+                    "WHERE (id = :id) AND ((balance + :amount2) >= 0 );" )
                     .bind( "amount1", -amount )
                     .bind( "id", srcid )
                     .bind( "amount2", -amount )
@@ -113,5 +118,75 @@ public class ServiceDAO {
             }
         }
         return "\"Succeeeded\"";
+    }
+
+    public String setAccountBalanceV2(String id, Integer balance) {
+        executor.execute(new RunSetAccountBalance(id, balance));
+        return "In process";
+    }
+
+    public String addToAccountBalanceV2(String id, Integer amount) {
+        executor.execute(new RunAddToBalance(id, amount));
+        return "In process";
+    }
+
+    public String makeTransferV2(String srcid, String dstid, Integer amount) {
+        executor.execute(new RunMakeTransfer(srcid, dstid, amount));
+        return "In process";
+    }
+
+    // not static so that outer methods can be directly accessed
+    private class RunAddToBalance implements Runnable {
+        private String id;
+        private Integer amount;
+
+        public RunAddToBalance(String id, Integer amount) {
+            this.id = id;
+            this.amount = amount;
+        }
+
+        @Override
+        public void run() {
+            // save transaction
+            addToAccountBalance(id, amount);
+        }
+
+    }
+
+    private class RunSetAccountBalance implements Runnable {
+        private String id;
+        private Integer amount;
+
+        public RunSetAccountBalance(String id, Integer amount) {
+            this.id = id;
+            this.amount = amount;
+        }
+
+        @Override
+        public void run() {
+            // save transaction
+            setAccountBalance(id, amount);
+
+        }
+
+    }
+
+    private class RunMakeTransfer implements Runnable {
+        private String srcid;
+        private String dstid;
+        private Integer amount;
+
+        public RunMakeTransfer(String srcid, String dstid, Integer amount) {
+            this.srcid = srcid;
+            this.dstid = dstid;
+            this.amount = amount;
+        }
+
+        @Override
+        public void run() {
+            // save transaction
+            makeTransfer(srcid, dstid, amount);
+        }
+
     }
 }

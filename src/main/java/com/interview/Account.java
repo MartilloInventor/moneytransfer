@@ -1,8 +1,6 @@
 package com.interview;
 
-import java.io.Serializable;
-
-public class Account /*implements Serializable*/ {
+public class Account {
 
     private String id;
     private Integer balance;

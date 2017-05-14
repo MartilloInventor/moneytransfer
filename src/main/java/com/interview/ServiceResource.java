@@ -1,8 +1,8 @@
 package com.interview;
 
 import javax.ws.rs.*;
-
 import javax.ws.rs.core.MediaType;
+
 import java.util.List;
 
 //import static jdk.nashorn.internal.runtime.PropertyDescriptor.GET;
@@ -16,7 +16,6 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 public class ServiceResource {
     final static String version = "1.0.0";
-
     private ServiceDAO dao;
 
     ServiceResource(ServiceDAO dao) {
@@ -79,5 +78,25 @@ public class ServiceResource {
                                @QueryParam("dstid") String dstid,
                                @QueryParam("amount") Integer amount) {
         return dao.makeTransfer( srcid, dstid, amount );
+    }
+
+    @POST
+    @Path("/accounts/balance/v2/{id}")
+    public String setAccountBalanceV2(@PathParam("id") String id, @QueryParam("amount") Integer amount) {
+        return dao.setAccountBalanceV2( id, amount );
+    }
+
+    @POST
+    @Path("/accounts/addtobalance/v2/{id}")
+    public String addToAccountBalanceV2(@PathParam("id") String id, @QueryParam("amount") Integer amount) {
+        return dao.addToAccountBalanceV2( id, amount );
+    }
+
+    @POST
+    @Path("/accounts/transfer/v2")
+    public String makeTransferV2(@QueryParam("srcid") String srcid,
+                                 @QueryParam("dstid") String dstid,
+                                 @QueryParam("amount") Integer amount) {
+        return dao.makeTransferV2( srcid, dstid, amount );
     }
 }
