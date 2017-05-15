@@ -55,7 +55,7 @@ Here are the main REST API endpoints.
  
  `/api/accounts/addtobalance/v2/{id}?amount=Integer -- Adds amount, which may be negative, to balance of account {id}, result >= 0, returns number of modified rows`
  
- `/api/accounts/transfer/v2?srcid=String&dstid=String&amount=Integer -- ransfers positive amount from account srcid to dstid if both srcid and dstid exist.`
+ `/api/accounts/transfer/v2?srcid=String&dstid=String&amount=Integer -- transfers positive amount from account srcid to dstid if both srcid and dstid exist.`
      
  **CLIENT API**
  
