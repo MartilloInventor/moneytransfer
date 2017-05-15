@@ -16,11 +16,9 @@ public class ServiceConfiguration extends Configuration {
     @NotNull
     @JsonProperty("database")
     private DataSourceFactory dataSourceFactory = new DataSourceFactory();
-
     public DataSourceFactory getDataSourceFactory() {
         return dataSourceFactory;
     }
-
     public void setDataSourceFactory(DataSourceFactory dataSourceFactory) {
         this.dataSourceFactory = dataSourceFactory;
     }
@@ -29,11 +27,7 @@ public class ServiceConfiguration extends Configuration {
     @NotNull
     @JsonProperty("flyway")
     private FlywayFactory flywayFactory;
-
-    public FlywayFactory getFlywayFactory() {
-        return flywayFactory;
-    }
-
+    public FlywayFactory getFlywayFactory() { return flywayFactory; }
     public void setFlywayFactory(FlywayFactory flywayFactory) {
         this.flywayFactory = flywayFactory;
     }

@@ -5,7 +5,7 @@ public class Account {
     private String id;
     private Integer balance;
 
-    Account(String id, Integer balance) {
+    public Account(String id, Integer balance) {
         this.id = id;
         this.balance = balance;
     }
@@ -17,7 +17,7 @@ public class Account {
         this.id = id;
     }
 
-    Integer getBalance() {
+    public Integer getBalance() {
         return balance;
     }
     public void setBalance(Integer balance) {

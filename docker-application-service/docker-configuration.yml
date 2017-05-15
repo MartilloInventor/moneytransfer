@@ -1,4 +1,5 @@
 server:
+
   # Jetty Web Server
   applicationConnectors:
     - type: http
@@ -8,7 +9,6 @@ server:
       port: 8081
   requestLog:
     appenders: []
-
 # DB
 database:
   # the name of your JDBC driver
@@ -21,7 +21,7 @@ database:
   password: "circle"
 
   # the JDBC URL
-  url: "jdbc:postgresql://localhost:5432/circle"
+  url: "jdbc:postgresql://172.17.0.2:5432/circle"
 
   # the SQL query to run when validating a connection's liveness
   validationQuery: "/* APIService Health Check */ SELECT 1"
@@ -64,8 +64,11 @@ flyway:
   # Whether to automatically call validate or not when running migrate. (default: true)
   validateOnMigrate: true
 
+
+
 # Logging settings.
 logging:
+
   # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
   level: INFO
 
